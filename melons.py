@@ -1,12 +1,15 @@
 """This file should have our melon-type classes in it."""
 
-class MelonOrder(object):
+class AbstractMelonOrder(object):
     species = None
     color = None
     imported = False
     shape = None
     seasons = []
     base_price = 5
+
+    def __init__(self):
+        raise NotImplementedError("Melon order must be of a specific type")
 
     def get_base_price(self):
         """Return the base price of all melons"""
@@ -23,12 +26,15 @@ class MelonOrder(object):
 
 
 
-class WatermelonOrder(MelonOrder):
+class WatermelonOrder(AbstractMelonOrder):
     species = "Watermelon"
     color = "green"
     imported = False
     shape = 'natural'
     seasons = ['Fall', 'Summer']
+
+    def __init__(self):
+        pass
 
     def get_price(self, qty):
         """Calculate price, given a number of melons ordered."""
@@ -42,12 +48,15 @@ class WatermelonOrder(MelonOrder):
 
 
 
-class CantaloupeOrder(MelonOrder):
+class CantaloupeOrder(AbstractMelonOrder):
     species = "Cantaloupe"
     color = "tan"
     imported = False
     shape = 'natural'
     seasons = ['Spring', 'Summer']
+
+    def __init__(self):
+        pass
 
     def get_price(self, qty):
         """Calculate price, given a number of melons ordered."""
@@ -60,12 +69,15 @@ class CantaloupeOrder(MelonOrder):
         return total
 
 
-class CasabaOrder(MelonOrder):
+class CasabaOrder(AbstractMelonOrder):
     species = "Casaba"
     color = "green"
     imported = True
     shape = 'natural'
     seasons = ['Fall', 'Summer', 'Spring', 'Winter']
+
+    def __init__(self):
+        pass
 
     def get_price(self, qty):
         """Calculate price, given a number of melons ordered."""
@@ -75,13 +87,16 @@ class CasabaOrder(MelonOrder):
         return qty * price_each
 
 
-class SharlynOrder(MelonOrder):
+class SharlynOrder(AbstractMelonOrder):
     species = "Sharlyn"
     color = "tan"
     imported = True
     shape = 'natural'
     seasons = ['Summer']
 
+    def __init__(self):
+        pass
+
     def get_price(self, qty):
         """Calculate price, given a number of melons ordered."""
 
@@ -90,13 +105,16 @@ class SharlynOrder(MelonOrder):
         return qty * price_each 
 
 
-class SantaClausOrder(MelonOrder):
+class SantaClausOrder(AbstractMelonOrder):
     species = "Santa Claus"
     color = "green"
     imported = True
     shape = 'natural'
     seasons = ['Winter', 'Spring']
 
+    def __init__(self):
+        pass
+
     def get_price(self, qty):
         """Calculate price, given a number of melons ordered."""
 
@@ -106,12 +124,15 @@ class SantaClausOrder(MelonOrder):
 
 
 
-class ChristmasOrder(MelonOrder):
+class ChristmasOrder(AbstractMelonOrder):
     species = "Christmas"
     color = "green"
     imported = False
     shape = 'natural'
     seasons = ['Winter']
+
+    def __init__(self):
+        pass
 
     def get_price(self, qty):
         """Calculate price, given a number of melons ordered."""
@@ -119,12 +140,15 @@ class ChristmasOrder(MelonOrder):
         return qty * self.get_base_price()
 
 
-class HornedMelonOrder(MelonOrder):
+class HornedmelonOrder(AbstractMelonOrder):
     species = "Horned Melon"
     color = "yellow"
     imported = True
     shape = 'natural'
     seasons = ['Summer']
+
+    def __init__(self):
+        pass
 
     def get_price(self, qty):
         """Calculate price, given a number of melons ordered."""
@@ -134,12 +158,15 @@ class HornedMelonOrder(MelonOrder):
         return qty * price_each 
 
 
-class XiguaOrder(MelonOrder):
+class XiguaOrder(AbstractMelonOrder):
     species = "Xigua"
     color = "black"
     imported = True
     shape = 'square'
     seasons = ['Summer']
+
+    def __init__(self):
+        pass
 
     def get_price(self, qty):
         """Calculate price, given a number of melons ordered."""
@@ -149,12 +176,15 @@ class XiguaOrder(MelonOrder):
         return qty * price_each
 
 
-class OgenOrder(MelonOrder):
+class OgenOrder(AbstractMelonOrder):
     species = "Ogen"
     color = "tan"
     imported = False
     shape = 'natural'
     seasons = ['Spring', 'Summer']
+
+    def __init__(self):
+        pass
 
     def get_price(self, qty):
         """Calculate price, given a number of melons ordered."""
