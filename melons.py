@@ -1,12 +1,13 @@
 """This file should have our melon-type classes in it."""
 
+from datetime import date
+
 class AbstractMelonOrder(object):
     species = None
     color = None
     imported = False
     shape = None
     seasons = []
-    base_price = 5
 
     def __init__(self):
         raise NotImplementedError("Melon order must be of a specific type")
@@ -14,12 +15,41 @@ class AbstractMelonOrder(object):
     def get_base_price(self):
         """Return the base price of all melons"""
 
-        if 'mel' == 'grumpy':
+        mel = None
+        BASE_PRICE = 5
+        price = BASE_PRICE
+
+        if mel == 'grumpy':
             return 100
-        elif 'mel' == 'happy':
+        elif mel == 'happy':
             return 1
         else:
-            return 5
+            if self.imported == True:
+                price = price * 1.5
+            if self.shape == 'square':
+                price *= 2
+            
+            return price
+
+    def is_available_now(self):
+
+        todays_month = date.today().month
+
+        months_available = []
+        for season in self.seasons:
+            if season == 'Winter':
+                months_available.extend([1, 2, 3])
+            if season == 'Spring':
+                months_available.extend([4, 5, 6])
+            if season == 'Summer':
+                months_available.extend([7, 8, 9])
+            if season == 'Fall':
+                months_available.extend([10, 11, 12])
+
+        if todays_month in months_available:
+            return True
+        else:
+            return False
 
 
 
@@ -82,7 +112,7 @@ class CasabaOrder(AbstractMelonOrder):
     def get_price(self, qty):
         """Calculate price, given a number of melons ordered."""
 
-        price_each = (self.get_base_price() + 1) * 1.5
+        price_each = self.get_base_price() + 1
 
         return qty * price_each
 
@@ -124,7 +154,7 @@ class SantaClausOrder(AbstractMelonOrder):
 
 
 
-class ChristmasOrder(AbstractMelonOrder):
+class ChristmasMelonOrder(AbstractMelonOrder):
     species = "Christmas"
     color = "green"
     imported = False
